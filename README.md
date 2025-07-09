@@ -34,11 +34,12 @@ Ensure you have the following installed before proceeding:
    python -m venv venv
    source venv/bin/activate  # Linux/Mac
    venv\Scripts\activate     # Windows
-   pip install -r requirements.txt
+   
 4. Clone the Repository:
    ```bash
    git clone https://github.com/Apptimia/rt-sensor-mqtt-grafana.git
    cd rt-sensor-mqtt-grafana
+   pip install -r ppgserver/requirements.txt
    ```
 5. Edit .env file and start 'IMUProcessor.py' script
    Change the HOST_IP line in the .env file and set to your RaspberryPi's address
@@ -73,6 +74,25 @@ Ensure you have the following installed before proceeding:
       ```bash
       ./start.sh
       ```
+3. If faced error like this :
+   ```bash
+   packetp@packetp-Yoga-6-13ALC6:~/grafanna/rt-sensor-mqtt-grafana$ docker-compose up -d --build
+   Creating network "rt-sensor-mqtt-grafana_influx_network" with driver "bridge"
+   Starting influxdb ... error
+
+   ERROR: for influxdb  Cannot start service influxdb: failed to set up container networking: network 26f2e70269ada1c901dd753e34622ffdd4692392121fbb3539fca27caeaee661 not found
+
+   ERROR: for influxdb  Cannot start service influxdb: failed to set up container networking: network 26f2e70269ada1c901dd753e34622ffdd4692392121fbb3539fca27caeaee661 not found
+   ERROR: Encountered errors while bringing up the project.
+   ```
+   - Delete rt-sensor-mqtt-grafana in containers
+   ```bash
+   docker network rm rt-sensor-mqtt-grafana_influx_network
+   ```
+   - Run it again
+   ```bash 
+   docker-compose up -d --build 
+   ```
 ## Accessing the Services
 
 1. Access Grafana
