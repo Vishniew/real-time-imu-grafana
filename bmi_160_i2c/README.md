@@ -18,6 +18,11 @@ Make the connection as follows
 | SDA         | I2C SDA (Pin 3)   |
 | SCL         | I2C SCL (Pin 5)   |
 
+### Hardware Setup
+
+The image below shows the hardware setup used for this project. A Raspberry Pi is connected to a BMI160 sensor via the I2C interface. This setup was used to capture real-time IMU (Inertial Measurement Unit) data, which is later visualized using Grafana.
+
+![Raspberry Pi with BMI160 sensor setup](images/Raspberry_pi+BMI160.png)
 
 ### Enabling I2C on Raspberry Pi
 
@@ -78,3 +83,17 @@ $ python IMUProcessor.py
 BMI160 sensor initialized successfully at address 0x69 on bus 1.
 Starting IMU Sensor...
 ```
+## Running the IMU Processor
+
+When you run the Python script `IMUProcessor.py`, it may prompt for missing Python packages such as:
+
+- `paho-mqtt`
+- `matplotlib`
+- `numpy`
+
+### To install the required packages:
+
+```bash
+pip install <package-name>
+
+
